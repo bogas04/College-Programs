@@ -1,0 +1,4 @@
+#include              file1
+#include file2
+random gibberish from original text
+#include thisFileShouldNotExist

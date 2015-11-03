@@ -10,7 +10,12 @@ public class WaterJug {
   static final int CHECKED = -1;
 
   public static void main (String args[]) {
-    System.out.println(solveFrom(initialState) ? solution.toString() : "No solution");
+    System.out.println("Initial State: " + initialState.toString());
+    if(solveFrom(initialState)) {
+      for(State s: solution) {
+        System.out.println((s.equalsTo(finalState) ? "Final State: " : "Next State: ") + s.toString());
+      }
+    }
   }
   public static boolean solveFrom (State s) {
     boolean foundSolution = false;
@@ -41,11 +46,6 @@ public class WaterJug {
     }
 
     return (status[s._3][s._5] == SOLUTION) || foundSolution;
-  }
-  static void printMatrix(int a[][]) {
-    for(int b[] : a) {
-      System.out.println(Arrays.toString(b));
-    }
   }
 }
 class State {
