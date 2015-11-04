@@ -3,7 +3,7 @@ global start                ; make the main function externally visible
 section .data
 
 mymsg db "hello, world", 0xa  ; string with a carriage-return
-mylen equ $-mymsg             ; string length in bytes
+mylen equ $ - mymsg           ; string length in bytes
 
 section .text
 

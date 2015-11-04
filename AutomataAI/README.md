@@ -9,7 +9,7 @@ AI
   * [x] Water Jug Problem
   * [x] 8 Queen Problem
   * [ ] Tic tac toe
-  * [ ] Chess Problem
+  * [ ] 8 Puzzle Problem
 
 Automata
 ==
@@ -19,7 +19,7 @@ Automata
   * [x] One Item Vending Machine
   * [x] PDA that can accept language a^ib^jc^k | i = j or j = k
   * [x] Turing Machine for palindrome
-  * [ ] Turing Machine to multiply 2 non negative numbers
+  * [x] Turing Machine to multiply 2 non negative numbers
   * [ ] CYK
 
 License

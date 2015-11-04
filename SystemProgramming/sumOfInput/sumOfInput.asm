@@ -1,29 +1,40 @@
 %include "../macros.asm"
 
-; Program to print sum of first N natural numbers
+; Program to print sum of N
 global start
 
 section .text
 start: 
-  ; Taking input
+  ; Taking input N
   print mEnterN, mEnterNLength
   read input, 100
   dec eax                  ; ignoring 0xA from length
   mov dword [inputLength], eax
- 
   call dec2AX
 
-  ; Computing sum
-  mov ebx, eax             ; n in BX
-  inc ebx                  ; n + 1 in BX
-  mul ebx                  ; n*(n + 1) in DX AX
-  shr eax, 1               ; n*(n + 1)/2 in AX
-  
-  call AX2dec
+  mov ecx, eax             ; count of numbers to process
+  mov ebx, 0               ; sum of these numbers 
 
-  ; Printing output
-  print mSum, mSumLength
-  print input, [inputLength]
+  ; Inputting N numbers
+  .loop: print mEnterNext, mEnterNextLength
+
+         ; Taking ith number 
+           read input, 100
+           dec eax
+           mov dword [inputLength], eax
+
+         call dec2AX    ; Getting ith number in AX
+
+         add ebx, eax      ; Adding to the sum
+         dec ecx           ; decrementing numbers to be read
+         jnz start.loop    ; loop termination condition
+
+  mov eax, ebx             ; saving result in AX
+  call AX2dec           ; getting result in input
+
+  ; Printing result
+  print mSum, mSumLength 
+  print input, [inputLength] 
   print mNewLine, mNewLineLength
 
   exit 0
@@ -86,12 +97,16 @@ AX2dec:
 section .bss
   inputLength resd 1 
   input resb 100
+  temp resd 1
 
 section .data
-  mEnterN db 'Enter a natural number N: '
+  mEnterN db 'Enter a number N: '
   mEnterNLength equ $ - mEnterN
 
-  mSum db 'Sum of first N natural numbers is: '
+  mEnterNext db 'Enter next positive number: '
+  mEnterNextLength equ $ - mEnterNext
+
+  mSum db 'Sum of above N numbers is: '
   mSumLength equ $ - mSum
   
   mNewLine db 0xA
