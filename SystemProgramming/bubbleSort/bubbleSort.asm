@@ -61,8 +61,8 @@ section .bss
 
 section .data
   ;array db 1, 2, 5, 6, 1, 2, 9, 7
-  ;array db 9, 1, 6, 2, 3, 5, 2, 6
-  array db 9, 8, 7, 6, 5, 3, 2, 1
+  array db 9, 1, 6, 2, 3, 5, 2, 6
+  ;array db 9, 8, 7, 6, 5, 3, 2, 1
   arrayLength dd 8d
 
   mNewLine db 0xA

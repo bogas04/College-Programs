@@ -5,7 +5,7 @@ global start
 
 section .text
 start:
-  mov eax, 0xB008
+  mov eax, 0x0690
 
   call AX2hex
 

@@ -55,7 +55,6 @@ term    : number                      { $$ = $1; }
         ;
 
 %%
-
 int computeSymbolIndex (char token) {
   int idx = -1;
   if(islower(token)) {
@@ -65,26 +64,20 @@ int computeSymbolIndex (char token) {
   }
   return idx;
 } 
-
 int getSymbolValue(char symbol) {
   return symbols[computeSymbolIndex(symbol)];
 }
-
 void setSymbolValue(char symbol, int val) {
   symbols[computeSymbolIndex(symbol)] = val;
 }
-
 int main (void) {
   int i;
-
   // Initialize symbol table
   for(i=0; i < 52; i++) {
     symbols[i] = 0;
   }
-
   return yyparse ( );
 }
-
 void yyerror (char *s) {
   fprintf (stderr, "%s\n", s);
 }

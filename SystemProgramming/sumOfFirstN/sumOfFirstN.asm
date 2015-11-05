@@ -46,7 +46,7 @@ dec2AX:
          add eax, ebx               ; AX = AX + digit
          inc ecx                    ; set index pointer to next digit
          cmp ecx, edx               ; if index pointer points to last digit
-         jle dec2AX.loop         ; loop if CX <= DX 
+         jle dec2AX.loop            ; loop if CX <= DX 
 
   pop edx                           ; restoring DX after using it
   pop ecx                           ; restoring CX after using it
@@ -62,12 +62,12 @@ AX2dec:
   mov ecx, 0x0                    ; holds the digit before pushing to stack
 
   ; converting to ascii
-  .loop: mov edx, 0
-         div word [ten]           ; AX = DXAX/10, DX = DXAX%10
-         mov cl, dl               ; CL = DL
+  .loop: div byte [ten]           ; AL = AX/10, AH = AX%10
+         mov cl, ah               ; CL = AH
          add cl, 0x30             ; AX%10 += ascii code for '0'
          push ecx                 ; push the digit
          inc bl                   ; count of digits in stack
+         mov ah, 0                ; restore dividend 
          cmp eax, 0x0             ; loop termination condition
          jne AX2dec.loop 
 
@@ -77,7 +77,7 @@ AX2dec:
   .loop2: pop dword [input + ecx] ; Take first digit from stack
           inc ecx                 ; increment index pointer
           cmp ecx, ebx
-          jl AX2dec.loop2      ; loop termination condition
+          jl AX2dec.loop2         ; loop termination condition
 
   pop ecx                         ; restoring CX after using it
   pop ebx                         ; restoring BX after using it

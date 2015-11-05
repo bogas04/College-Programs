@@ -6,3 +6,6 @@ $(FILE): $(FILE).o
 
 $(FILE).o:
 	nasm -f macho $(FILE).asm
+
+clean:
+	rm $(FILE) $(FILE).o
